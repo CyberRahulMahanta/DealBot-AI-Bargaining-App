@@ -13,7 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/l" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView"
@@ -82,7 +82,7 @@
             android:layout_height="100dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:drawableBottom="@drawable/f"
+            android:drawableBottom="@drawable/facebook"
              android:backgroundTint="@color/white"/>
 
         <Button
@@ -91,7 +91,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:drawableBottom="@drawable/g"
+            android:drawableBottom="@drawable/google"
             android:backgroundTint="@color/white"/>
 
     </LinearLayout>

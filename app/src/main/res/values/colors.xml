@@ -16,4 +16,5 @@
     <color name="item_yellow_lens">#FBC02D</color>
     <color name="item_green_lens">#388E3C</color>
     <color name="item_buy_button">#78909C</color>
+    <color name="button">#78909C</color>
 </resources>
