@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="40dp"
+    tools:context=".MainActivity">
+
+    <!-- Spacer to push content down -->
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="53dp"
+        android:layout_weight="2" />
+
+    <!-- Robot Icon -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/l"
+           />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Middle Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Login Button Group -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginHorizontal="60dp"
+        android:backgroundTint="#7E9096"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="30dp"
+        android:text="Already Have An Account?"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- Sign Up Button Group -->
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginHorizontal="60dp"
+        android:backgroundTint="#7E9096"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Don't Have Account?"
+        android:textColor="#222222"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

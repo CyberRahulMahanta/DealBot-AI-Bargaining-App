@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Darker Circle -->
+    <item
+        android:top="-120dp"
+        android:left="-120dp"
+        android:width="280dp"
+        android:height="280dp">
+        <shape android:shape="oval">
+            <solid android:color="#777B7E" />
+        </shape>
+    </item>
+    <!-- Lighter Circle -->
+    <item
+        android:top="-150dp"
+        android:left="30dp"
+        android:width="320dp"
+        android:height="320dp">
+        <shape android:shape="oval">
+            <solid android:color="#999EA1" />
+        </shape>
+    </item>
+</layer-list>

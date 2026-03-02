@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="language_button_purple">#C8BFE7</color>
+    <color name="language_button_red">#F4A9A8</color>
+    <color name="language_button_orange">#F3C4A2</color>
+    <color name="language_button_magenta">#E6B3E6</color>
+    <color name="language_button_dark_purple">#B39DDB</color>
+    <color name="language_button_cyan">#A2E1D9</color>
+    <color name="language_button_green">#DCE775</color>
+    <color name="language_button_yellow">#FFF59D</color>
+    <color name="language_button_continue">#78909C</color>
+    <color name="item_red">#D32F2F</color>
+    <color name="item_blue">#1976D2</color>
+    <color name="item_yellow_lens">#FBC02D</color>
+    <color name="item_green_lens">#388E3C</color>
+    <color name="item_buy_button">#78909C</color>
+</resources>
