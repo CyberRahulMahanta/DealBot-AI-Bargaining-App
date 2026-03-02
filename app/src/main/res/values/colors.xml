@@ -17,4 +17,18 @@
     <color name="item_green_lens">#388E3C</color>
     <color name="item_buy_button">#78909C</color>
     <color name="button">#78909C</color>
+    <color name="primary">#6C3AED</color>
+    <color name="primary_dark">#5B21B6</color>
+    <color name="accent">#9333EA</color>
+    <color name="background">#F5F3FF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_surface">#1A1A2E</color>
+    <color name="text_secondary">#7C7C8A</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="social_bg">#F5F5F5</color>
+    <color name="glass_card">#F0F0FF</color>
+    <color name="grey_background">#78909C</color>
+    <color name="nav_item_selected">#FFFFFFFF</color>
+    <color name="nav_item_unselected">#ECEFF1</color>
 </resources>

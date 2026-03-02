@@ -1,85 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingBottom="40dp"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
-
+    <!-- Floating decorative circles -->
     <View
-        android:layout_width="262dp"
-        android:layout_height="105dp"
-        android:layout_weight="0." />
-    <!-- Logo at Top -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="80dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="0dp">
-
-        <ImageView
-            android:id="@+id/imgLogo"
+        android:id="@+id/circle1"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="-40dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/blur_circle_purple"
+        android:alpha="0.3" />
+    <View
+        android:id="@+id/circle2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="-30dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/blur_circle_violet"
+        android:alpha="0.25" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="32dp"
+        android:paddingBottom="48dp">
+        <!-- Top spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.2" />
+        <!-- Logo Card with glassmorphism -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logoCard"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="48dp"
+            app:cardElevation="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#30FFFFFF">
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+        </com.google.android.material.card.MaterialCardView>
+        <!-- App Name / Tagline -->
+        <TextView
+            android:id="@+id/txtAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Welcome Back"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A2E"
+            android:fontFamily="sans-serif-medium" />
+        <TextView
+            android:id="@+id/txtTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sign in to continue your journey"
+            android:textSize="14sp"
+            android:textColor="#7C7C8A"
+            android:fontFamily="sans-serif" />
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
+        <!-- Login Button - Gradient filled -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/logo" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Spacer to push buttons down -->
-    <View
-        android:layout_width="262dp"
-        android:layout_height="105dp"
-        android:layout_weight="0." />
-
-    <!-- Login Button -->
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginHorizontal="60dp"
-        android:backgroundTint="#7E9096"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:cornerRadius="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="30dp"
-        android:text="Already Have An Account?"
-        android:textColor="#222222"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-    <!-- Sign Up Button -->
-
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginHorizontal="60dp"
-        android:backgroundTint="#7E9096"
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:cornerRadius="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Don't Have Account?"
-        android:textColor="#222222"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-</LinearLayout>
+            android:layout_height="56dp"
+            android:text="Login"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:background="@drawable/gradient_button"
+            app:backgroundTint="@null"
+            app:cornerRadius="16dp"
+            app:elevation="8dp" />
+        <TextView
+            android:id="@+id/txtLoginHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Already have an account?"
+            android:textColor="#7C7C8A"
+            android:textSize="13sp" />
+        <!-- Divider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#20000000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:text="OR"
+                android:textSize="12sp"
+                android:textColor="#9E9E9E"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#20000000" />
+        </LinearLayout>
+        <!-- Sign Up Button - Outlined -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Create Account"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/primary"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1.5dp"
+            app:rippleColor="#206C3AED" />
+        <TextView
+            android:id="@+id/txtSignUpHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="New here? Join us today"
+            android:textColor="#7C7C8A"
+            android:textSize="13sp" />
+        <!-- Bottom spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

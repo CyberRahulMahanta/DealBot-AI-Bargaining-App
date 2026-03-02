@@ -1,417 +1,498 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5">
-
-    <!-- Scroll Area -->
+    android:background="#FFFFFF">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
+        android:clipToPadding="false"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Top Bar -->
-            <LinearLayout
+            android:paddingTop="16dp">
+            <!-- Header: Discover + Icons -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="4dp">
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Discover"
-                        android:textSize="22sp"
+                        android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
+                        android:textColor="#1A1A1A"
+                        android:fontFamily="sans-serif-medium" />
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Find anything what you want!"
-                        android:textSize="12sp"
-                        android:textColor="#888"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="13sp"
+                        android:textColor="#888888"
+                        android:layout_marginTop="2dp" />
                 </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@android:color/transparent"
-                    android:src="@android:drawable/ic_menu_search"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@android:color/transparent"
-                    android:src="@android:drawable/ic_dialog_info"/>
-            </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+                    <!-- Search Icon Button -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnSearch"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#E8E8E8"
+                        app:strokeWidth="1dp"
+                        android:layout_marginEnd="10dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_menu_search"
+                            app:tint="#1A1A1A" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <!-- Notification Icon Button -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnNotification"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#E8E8E8"
+                        app:strokeWidth="1dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_popup_reminder"
+                            app:tint="#1A1A1A" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </RelativeLayout>
             <!-- Discount Banner -->
-            <ImageView
-                android:layout_marginTop="16dp"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bannerCard"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo"/>
-
-            <!-- Categories -->
-            <HorizontalScrollView
+                android:layout_height="140dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#F5F0EB">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <!-- Banner Image Placeholder -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/discount_image"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:paddingStart="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Discounts"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A1A" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSeeMore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp"
+                            android:text="See More"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            app:cornerRadius="20dp"
+                            app:backgroundTint="#4A7C59"
+                            android:textColor="#FFFFFF"
+                            android:paddingHorizontal="16dp" />
+                    </LinearLayout>
+                    <!-- Discount Badge -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="52dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardBackgroundColor="#C8A96E"
+                        app:cardElevation="0dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="-50%"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <!-- Category Chips -->
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
+                android:layout_marginTop="16dp"
+                android:scrollbars="none"
+                android:paddingHorizontal="20dp"
+                android:clipToPadding="false">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="8dp">
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Shoes"
-                        android:layout_marginEnd="8dp"
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"
+                        app:chipBackgroundColor="#F5F5F5"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="#E0E0E0"
+                        app:chipStrokeWidth="1dp" />
+                    <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"/>
-
-                    <Button
+                        android:layout_height="wrap_content"
                         android:text="Clothes"
-                        android:layout_marginEnd="8dp"
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"
+                        app:chipBackgroundColor="#F5F5F5"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="#E0E0E0"
+                        app:chipStrokeWidth="1dp" />
+                    <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"/>
-
-                    <Button
+                        android:layout_height="wrap_content"
                         android:text="Fashion"
-                        android:layout_marginEnd="8dp"
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"
+                        app:chipBackgroundColor="#F5F5F5"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="#E0E0E0"
+                        app:chipStrokeWidth="1dp" />
+                    <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"/>
-
-                    <Button
+                        android:layout_height="wrap_content"
                         android:text="Beauty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"/>
-                </LinearLayout>
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"
+                        app:chipBackgroundColor="#F5F5F5"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="#E0E0E0"
+                        app:chipStrokeWidth="1dp" />
+                </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
-
-            <!-- Flash Sale Title -->
-            <TextView
-                android:layout_marginTop="20dp"
-                android:text="Flash Sale"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <!-- Product Row -->
-            <HorizontalScrollView
-                android:layout_marginTop="12dp"
+            <!-- Flash Sale Header -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
-
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flash Sale"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:layout_centerVertical="true" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Closing in: "
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <!-- Timer: Hours -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="28dp"
+                        android:layout_height="24dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="#F0F0F0"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="3dp">
+                        <TextView
+                            android:id="@+id/tvHours"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="08"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A1A" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <!-- Timer: Minutes -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="28dp"
+                        android:layout_height="24dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="#F0F0F0"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="3dp">
+                        <TextView
+                            android:id="@+id/tvMinutes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="25"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A1A" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <!-- Timer: Seconds -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="28dp"
+                        android:layout_height="24dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="#F0F0F0"
+                        app:cardElevation="0dp">
+                        <TextView
+                            android:id="@+id/tvSeconds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="16"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A1A" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </RelativeLayout>
+            <!-- Flash Sale Products (Horizontal Scroll) -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:scrollbars="none"
+                android:paddingHorizontal="20dp"
+                android:clipToPadding="false">
+                <LinearLayout
+                    android:id="@+id/flashSaleContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <!-- Product Card -->
+                    <!-- Product 1 -->
                     <LinearLayout
-                        android:layout_width="140dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginEnd="12dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/logo"/>
-
+                        android:layout_marginEnd="14dp">
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#F5F5F5">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="12dp"
+                                android:background="@drawable/sale_img1" />
+                        </com.google.android.material.card.MaterialCardView>
                         <TextView
-                            android:text="Air Jordan XXX"
-                            android:textSize="12sp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
+                            android:layout_height="wrap_content"
+                            android:text="Air Jordan 1"
+                            android:textSize="13sp"
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="8dp"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="$140.00"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="2dp" />
                     </LinearLayout>
-
+                    <!-- Product 2 -->
                     <LinearLayout
-                        android:layout_width="140dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginEnd="12dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/logo"/>
-
+                        android:layout_marginEnd="14dp">
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#F5F5F5">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="12dp"
+                                android:background="@drawable/sale_img2"  />
+                        </com.google.android.material.card.MaterialCardView>
                         <TextView
-                            android:text="Air Jordan XXX"
-                            android:textSize="12sp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
+                            android:layout_height="wrap_content"
+                            android:text="ZE SmartWatch"
+                            android:textSize="13sp"
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="8dp"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
                         <TextView
-                            android:text="$140.00"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$168.00"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="2dp" />
                     </LinearLayout>
-
+                    <!-- Product 3 -->
                     <LinearLayout
-                        android:layout_width="140dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="12dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/logo"/>
-
+                        android:orientation="vertical">
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="#F5F5F5">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside"
+                                android:padding="12dp"
+                                android:background="@drawable/sale_img3" />
+                        </com.google.android.material.card.MaterialCardView>
                         <TextView
-                            android:text="Air Jordan XXX"
-                            android:textSize="12sp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
+                            android:layout_height="wrap_content"
+                            android:text="realme headphone"
+                            android:textSize="13sp"
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="8dp"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
                         <TextView
-                            android:text="$140.00"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$86.00"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="#1A1A1A"
+                            android:layout_marginTop="2dp" />
                     </LinearLayout>
-
-
-
                 </LinearLayout>
             </HorizontalScrollView>
-
-            <!-- Most Popular -->
-            <TextView
-                android:layout_marginTop="20dp"
-                android:text="Most Popular"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <!-- Most Popular Products Row -->
+            <!-- Most Popular Header -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="24dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Most Popular"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:layout_centerVertical="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="See all"
+                    android:textSize="13sp"
+                    android:textColor="#888888" />
+            </RelativeLayout>
+            <!-- Most Popular Grid (2 columns) -->
             <LinearLayout
-                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
-
-                <!-- Product 1 -->
-                <LinearLayout
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="16dp">
+                <!-- Popular Item 1 -->
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
+                    android:layout_height="180dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="8dp"
-                    android:background="#FFFFFF"
-                    android:padding="8dp"
-                    android:elevation="4dp">
-
+                    android:layout_marginEnd="7dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#F5F5F5">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="130dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logo"/>
-
-                    <TextView
-                        android:text="Cream Sweater"
-                        android:textSize="14sp"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:text="$120.00"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <!-- Product 2 -->
-                <LinearLayout
+                        android:background="@drawable/popular_img1" />
+                </com.google.android.material.card.MaterialCardView>
+                <!-- Popular Item 2 -->
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
+                    android:layout_height="180dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="8dp"
-                    android:background="#FFFFFF"
-                    android:padding="8dp"
-                    android:elevation="4dp">
-
+                    android:layout_marginStart="7dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#F5F5F5">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="130dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logo"/>
-
-                    <TextView
-                        android:text="Brown Jacket"
-                        android:textSize="14sp"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:text="$150.00"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
+                        android:background="@drawable/popular_img2" />
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
-
-    <!-- Bottom Navigation -->
-
-    <LinearLayout
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#8FA1A6"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="8dp"
-        android:weightSum="5">
-
-        <!-- Home -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        android:layout_gravity="bottom"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#FFFFFF">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_view"
-                android:tint="#FFFFFF"/>
-
-            <TextView
-                android:text="Home"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Search -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_search"
-                android:tint="#FFFFFF"/>
-
-            <TextView
-                android:text="Search"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Cart -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_add"
-                android:tint="#FFFFFF"/>
-
-            <TextView
-                android:text="Cart"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Favorite -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/btn_star"
-                android:tint="#FFFFFF"/>
-
-            <TextView
-                android:text="Favorite"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Account -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_myplaces"
-                android:tint="#FFFFFF"/>
-
-            <TextView
-                android:text="Account"
-                android:textSize="12sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+            android:background="@color/grey_background"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemTextColor="@color/nav_item_color"
+            app:itemBackground="@null"
+            app:menu="@menu/bottom_nav_menu" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
