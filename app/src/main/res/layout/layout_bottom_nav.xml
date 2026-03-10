@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:orientation="horizontal"
+    android:background="@color/grey_background"
+    android:elevation="12dp"
+    android:weightSum="5">
+
+    <!-- ================= HOME ================= -->
+    <LinearLayout
+        android:id="@+id/tabHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_home"
+            app:tint="@color/nav_item_selected" />
+
+        <TextView
+            android:id="@+id/tvHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="10sp"
+            android:textColor="@color/nav_item_selected"
+            android:layout_marginTop="3dp" />
+
+        <View
+            android:id="@+id/indicatorHome"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/nav_item_selected"
+            android:layout_marginTop="3dp" />
+    </LinearLayout>
+
+
+    <!-- ================= SEARCH ================= -->
+    <LinearLayout
+        android:id="@+id/tabSearch"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_search"
+            app:tint="@color/nav_item_unselected"
+            android:contentDescription="Search" />
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textSize="10sp"
+            android:textColor="@color/nav_item_unselected"
+            android:layout_marginTop="3dp" />
+
+        <View
+            android:id="@+id/indicatorSearch"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/nav_item_selected"
+            android:layout_marginTop="3dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
+    <!-- ================= CART ================= -->
+    <LinearLayout
+        android:id="@+id/tabCart"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivCart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_cart_nav"
+            app:tint="@color/nav_item_unselected" />
+
+        <TextView
+            android:id="@+id/tvCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+            android:textSize="10sp"
+            android:textColor="@color/nav_item_unselected"
+            android:layout_marginTop="3dp" />
+
+        <View
+            android:id="@+id/indicatorCart"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/nav_item_selected"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+
+    <!-- ================= FAVORITE ================= -->
+    <LinearLayout
+        android:id="@+id/tabFavorite"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_favorite"
+            app:tint="@color/nav_item_unselected"
+            android:contentDescription="Favorite" />
+
+        <TextView
+            android:id="@+id/tvFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorite"
+            android:textSize="10sp"
+            android:textColor="@color/nav_item_unselected"
+            android:layout_marginTop="3dp" />
+
+        <View
+            android:id="@+id/indicatorFavorite"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/nav_item_selected"
+            android:layout_marginTop="3dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+
+    <!-- ================= PROFILE ================= -->
+    <LinearLayout
+        android:id="@+id/tabProfile"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_profile"
+            app:tint="@color/nav_item_unselected" />
+
+        <TextView
+            android:id="@+id/tvProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="10sp"
+            android:textColor="@color/nav_item_unselected"
+            android:layout_marginTop="3dp" />
+
+        <View
+            android:id="@+id/indicatorProfile"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/nav_item_selected"
+            android:layout_marginTop="3dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

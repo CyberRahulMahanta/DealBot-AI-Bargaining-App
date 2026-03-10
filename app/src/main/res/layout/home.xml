@@ -208,6 +208,7 @@
             </HorizontalScrollView>
             <!-- Flash Sale Header -->
             <RelativeLayout
+                android:id="@+id/flashSaleContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
@@ -288,131 +289,18 @@
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </RelativeLayout>
+
             <!-- Flash Sale Products (Horizontal Scroll) -->
-            <HorizontalScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/flashSaleRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:scrollbars="none"
-                android:paddingHorizontal="20dp"
-                android:clipToPadding="false">
-                <LinearLayout
-                    android:id="@+id/flashSaleContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!-- Product 1 -->
-                    <LinearLayout
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="14dp">
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            app:cardCornerRadius="14dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#F5F5F5">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerInside"
-                                android:padding="12dp"
-                                android:background="@drawable/sale_img1" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Air Jordan 1"
-                            android:textSize="13sp"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="8dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$140.00"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="2dp" />
-                    </LinearLayout>
-                    <!-- Product 2 -->
-                    <LinearLayout
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="14dp">
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            app:cardCornerRadius="14dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#F5F5F5">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerInside"
-                                android:padding="12dp"
-                                android:background="@drawable/sale_img2"  />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ZE SmartWatch"
-                            android:textSize="13sp"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="8dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$168.00"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="2dp" />
-                    </LinearLayout>
-                    <!-- Product 3 -->
-                    <LinearLayout
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
-                            app:cardCornerRadius="14dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="#F5F5F5">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerInside"
-                                android:padding="12dp"
-                                android:background="@drawable/sale_img3" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="realme headphone"
-                            android:textSize="13sp"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="8dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$86.00"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="2dp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:paddingStart="20dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none"/>
+
             <!-- Most Popular Header -->
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -477,22 +365,12 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <!-- Bottom Navigation Bar -->
-    <com.google.android.material.card.MaterialCardView
+
+    <!-- Bottom Navigation -->
+    <include
+        android:id="@+id/layoutBottomNav"
+        layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/grey_background"
-            app:itemIconTint="@color/nav_item_color"
-            app:itemTextColor="@color/nav_item_color"
-            app:itemBackground="@null"
-            app:menu="@menu/bottom_nav_menu" />
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_height="68dp"
+        android:layout_gravity="bottom"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

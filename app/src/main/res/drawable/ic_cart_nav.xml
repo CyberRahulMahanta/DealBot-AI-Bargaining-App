@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Cart body -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M3,3h2l3.6,7.59 -1.35,2.45
+            A2,2 0 0,0 9,17h9"/>
+
+    <!-- Cart basket -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M7,13h10l3,-8H6"/>
+
+    <!-- Wheels -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M10,20a1.5,1.5 0 1,0 0.01,0"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M18,20a1.5,1.5 0 1,0 0.01,0"/>
+
+</vector>
