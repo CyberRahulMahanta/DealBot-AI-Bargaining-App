@@ -2,16 +2,20 @@ package com.example.deal.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.deal.network.ApiService
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://192.168.73.139:8000/"
+    private const val BASE_URL = "http://192.168.74.224:8000/"
 
-    val instance: ApiService by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiService::class.java)
+    }
+
+    val api: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
     }
 }

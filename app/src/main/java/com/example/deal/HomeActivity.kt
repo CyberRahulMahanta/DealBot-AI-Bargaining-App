@@ -1,6 +1,7 @@
 package com.example.deal
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deal.adapter.FlashSaleAdapter
 import com.example.deal.model.Product
+import com.example.deal.network.ApiService
 import com.example.deal.network.RetrofitClient
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.ChipGroup
@@ -56,7 +58,9 @@ class HomeActivity : AppCompatActivity() {
     // -------------------------------
     private fun loadProducts() {
 
-        RetrofitClient.instance.getProducts()
+        val api = RetrofitClient.api   // ✅ FIXED
+
+        api.getProducts()
             .enqueue(object : Callback<List<Product>> {
 
                 override fun onResponse(
@@ -138,10 +142,13 @@ class HomeActivity : AppCompatActivity() {
         tabFavorite.setOnClickListener {
             Toast.makeText(this, "Favorite Clicked", Toast.LENGTH_SHORT).show()
         }
-
         tabProfile.setOnClickListener {
             Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, UserProfileActivity::class.java)
+            startActivity(intent)
         }
+
+
     }
 
     // -------------------------------

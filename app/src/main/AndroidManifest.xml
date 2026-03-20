@@ -15,6 +15,15 @@
         android:theme="@style/Theme.Deal"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProductDetailActivity"
             android:exported="false" />
         <activity android:name=".LoginActivity" />

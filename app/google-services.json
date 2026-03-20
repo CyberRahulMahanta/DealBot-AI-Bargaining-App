@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130489312264",
+    "project_id": "dealbot-ai-app",
+    "storage_bucket": "dealbot-ai-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130489312264:android:74a7c6ea945e5b45889dbd",
+        "android_client_info": {
+          "package_name": "com.example.deal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBljCEzPID1GeBOBpv2p_MSwYd1bIM_3Jo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

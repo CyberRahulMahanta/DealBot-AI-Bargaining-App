@@ -8,9 +8,12 @@ data class Product(
     val min_price: Double?,
     val category: String?,
     val brand: String?,
-    val features: List<String>?,
+    val features: List<String>,
     val warranty: String?,
     val stock_quantity: Int?,
     val image_url: String?,
-    val popularity_score: Double?
+    val popularity_score: Double?,
+    val available_colors: String?,    // NEW
+    val rating: Double?,                  // NEW
+    val review_count: Int?                // NEW
 )

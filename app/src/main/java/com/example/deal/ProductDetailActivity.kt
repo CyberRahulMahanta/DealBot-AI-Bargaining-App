@@ -1,28 +1,39 @@
 package com.example.deal
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.deal.network.RetrofitClient
+import com.bumptech.glide.Glide
 import com.example.deal.model.Product
 import com.example.deal.model.ProductResponse
-import com.squareup.picasso.Picasso
+import com.example.deal.network.ApiService
+import com.example.deal.network.RetrofitClient
+import com.google.android.material.button.MaterialButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var productImage: ImageView
     private lateinit var productName: TextView
     private lateinit var productPrice: TextView
+    private lateinit var productBrand: TextView
+    private lateinit var productRating: TextView
+    private lateinit var productReviewCount: TextView
+    private lateinit var colorContainer: LinearLayout
+    private lateinit var btnBuyNow: MaterialButton
+
+    private var product: Product? = null
+    private var selectedColorIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,112 +43,173 @@ class ProductDetailActivity : AppCompatActivity() {
         productImage = findViewById(R.id.imgProduct)
         productName = findViewById(R.id.tvProductName)
         productPrice = findViewById(R.id.tvPrice)
+        productBrand = findViewById(R.id.tvBrandName)
+        productRating = findViewById(R.id.tvRating)
+        productReviewCount = findViewById(R.id.tvReviewCount)
+        colorContainer = findViewById(R.id.colorContainer)
+        btnBuyNow = findViewById(R.id.btnBuyNow)
 
-        // ✅ Get product ID from intent
+        // Get product ID from intent
         val productId = intent.getIntExtra("product_id", -1)
-        if (productId == -1) {
-            Toast.makeText(this, "Invalid Product ID", Toast.LENGTH_SHORT).show()
-            finish()
-            return
+        if (productId != -1) {
+            loadProduct(productId)
+        } else {
+            Toast.makeText(this, "Invalid product", Toast.LENGTH_SHORT).show()
         }
 
-        // ✅ Load product details from API
-        loadProduct(productId)
+// Buy Now Button
+        btnBuyNow.setOnClickListener {
+            if (product == null) {
+                Toast.makeText(this, "Product not loaded yet", Toast.LENGTH_SHORT).show()
+                Log.e("BUY_NOW", "Product is null")
+                return@setOnClickListener
+            }
 
-        setupClickListeners()
-        playEntranceAnimations()
+            val colors = product?.available_colors?.split(",") ?: emptyList()
+            val selectedColor = if (colors.isNotEmpty() && selectedColorIndex < colors.size) {
+                colors[selectedColorIndex]
+            } else "N/A"
+
+            Log.d("BUY_NOW", "Launching CheckoutActivity with: id=${product?.id}, name=${product?.name}, price=${product?.selling_price}, color=$selectedColor")
+
+            try {
+                val intent = Intent(this, CheckoutActivity::class.java).apply {
+                    putExtra("product_id", product?.id ?: -1)
+                    putExtra("product_name", product?.name ?: "Unknown")
+                    putExtra("product_price", product?.selling_price ?: 0.0)
+                    putExtra("selected_color", selectedColor)
+                }
+                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e("BUY_NOW_ERROR", e.message ?: "Unknown error")
+                Toast.makeText(this, "Failed to open checkout", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
     }
 
-    private fun loadProduct(productId: Int) {
-        RetrofitClient.instance.getProductById(productId)
-            .enqueue(object : Callback<ProductResponse> {
-                override fun onResponse(
-                    call: Call<ProductResponse>,
-                    response: Response<ProductResponse>
-                ) {
-                    val body = response.body()
-                    if (response.isSuccessful && body != null && body.success && body.data != null) {
-                        val product = body.data
+    private fun loadProduct(id: Int) {
 
-                        productName.text = product.name
-                        productPrice.text = "₹${product.selling_price}"
+        val api = RetrofitClient.api
 
-                        val imageUrl = product.image_url?.let { "http://192.168.73.139:8000/$it" }
-                        if (!imageUrl.isNullOrEmpty()) {
-                            Picasso.get().load(imageUrl).into(productImage)
-                        } else {
-                            productImage.setImageResource(R.drawable.sale_img1)
-                        }
-                    } else {
-                        Toast.makeText(this@ProductDetailActivity, "Product not found", Toast.LENGTH_SHORT).show()
+        api.getProductById(id).enqueue(object : Callback<ProductResponse> {
+
+            override fun onResponse(
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
+            ) {
+                if (response.isSuccessful) {
+                    product = response.body()?.data
+                    product?.let { populateProductDetails(it) }
+                        ?: Toast.makeText(
+                            this@ProductDetailActivity,
+                            "Product not found",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                } else {
+                    Toast.makeText(
+                        this@ProductDetailActivity,
+                        "Server error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                Log.e("API_ERROR", t.message ?: "Unknown error")
+                Toast.makeText(
+                    this@ProductDetailActivity,
+                    "Failed to load product",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
+    private fun populateProductDetails(product: Product) {
+        // Safe UI updates
+        productName.text = product.name ?: "Unknown"
+        productPrice.text = "₹${product.selling_price ?: 0.0}"
+        productBrand.text = product.brand ?: "Unknown"
+        productRating.text = product.rating?.toString() ?: "0"
+        productReviewCount.text = "(${product.review_count ?: 0} Reviews)"
+
+        // Load image safely
+        product.image_url?.let {
+            val fullImageUrl = "http://192.168.74.224:8000/$it"
+            Glide.with(this).load(fullImageUrl).into(productImage)
+        }
+
+        // Colors
+        setupColorViews(product)
+
+        // Features and warranty
+        loadFeatures(product)
+        loadWarranty(product)
+    }
+
+    private fun setupColorViews(product: Product) {
+        colorContainer.removeAllViews()
+        selectedColorIndex = 0
+        val colors = product.available_colors?.split(",") ?: emptyList()
+
+        colors.forEachIndexed { index, hex ->
+            try {
+                val colorView = View(this)
+                val size = 80 // px
+                val params = LinearLayout.LayoutParams(size, size)
+                params.setMargins(16, 0, 16, 0)
+                colorView.layoutParams = params
+
+                val drawable = GradientDrawable()
+                drawable.shape = GradientDrawable.OVAL
+                drawable.setColor(Color.parseColor(hex))
+                if (index == selectedColorIndex) drawable.setStroke(6, Color.GRAY)
+                colorView.background = drawable
+
+                colorView.setOnClickListener {
+                    selectedColorIndex = index
+                    for (i in 0 until colorContainer.childCount) {
+                        val child = colorContainer.getChildAt(i)
+                        val d = child.background as GradientDrawable
+                        if (i == selectedColorIndex) d.setStroke(6, Color.GRAY)
+                        else d.setStroke(0, Color.TRANSPARENT)
                     }
+                    Toast.makeText(this, "Selected color: $hex", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
-                    Toast.makeText(this@ProductDetailActivity, "Failed to load product", Toast.LENGTH_SHORT).show()
-                }
-            })
-    }
-
-    private fun setupClickListeners() {
-        findViewById<View>(R.id.btnBack).setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-
-        var isFavorite = false
-        findViewById<View>(R.id.btnFavorite).setOnClickListener {
-            isFavorite = !isFavorite
-            val icon = if (isFavorite) android.R.drawable.btn_star_big_on else android.R.drawable.btn_star_big_off
-            findViewById<ImageView>(R.id.icFavorite).setImageResource(icon)
-            it.animate().scaleX(1.3f).scaleY(1.3f).setDuration(150).withEndAction {
-                it.animate().scaleX(1f).scaleY(1f).setDuration(150).start()
-            }.start()
-        }
-
-        findViewById<View>(R.id.btnBuyNow).setOnClickListener {
-            Toast.makeText(this, "Added to purchase!", Toast.LENGTH_SHORT).show()
-        }
-
-        findViewById<View>(R.id.btnNegotiate).setOnClickListener {
-            Toast.makeText(this, "Negotiate price", Toast.LENGTH_SHORT).show()
-        }
-
-        findViewById<View>(R.id.btnCart).setOnClickListener {
-            Toast.makeText(this, "Added to cart!", Toast.LENGTH_SHORT).show()
+                colorContainer.addView(colorView)
+            } catch (e: Exception) {
+                Log.e("COLOR_ERROR", "Invalid color: $hex")
+            }
         }
     }
 
-    private fun playEntranceAnimations() {
-        val imageContainer = findViewById<View>(R.id.imageContainer)
-        val infoContainer = findViewById<View>(R.id.infoContainer)
-        val bottomBar = findViewById<View>(R.id.bottomBar)
-
-        listOf(imageContainer, infoContainer, bottomBar).forEach {
-            it.alpha = 0f
-            it.translationY = 40f
-        }
-
-        val decel = DecelerateInterpolator(1.5f)
-
-        ObjectAnimator.ofFloat(imageContainer, "alpha", 0f, 1f).apply { duration = 500; interpolator = decel; start() }
-        ObjectAnimator.ofFloat(imageContainer, "translationY", 40f, 0f).apply { duration = 500; interpolator = decel; start() }
-
-        AnimatorSet().apply {
-            playTogether(
-                ObjectAnimator.ofFloat(infoContainer, "alpha", 0f, 1f).apply { duration = 500 },
-                ObjectAnimator.ofFloat(infoContainer, "translationY", 40f, 0f).apply { duration = 500 }
-            )
-            startDelay = 200
-            interpolator = decel
-            start()
-        }
-
-        AnimatorSet().apply {
-            playTogether(
-                ObjectAnimator.ofFloat(bottomBar, "alpha", 0f, 1f).apply { duration = 500 },
-                ObjectAnimator.ofFloat(bottomBar, "translationY", 60f, 0f).apply { duration = 500 }
-            )
-            startDelay = 400
-            interpolator = decel
-            start()
+    private fun loadFeatures(product: Product) {
+        val container = findViewById<LinearLayout>(R.id.featuresContainer)
+        container.removeAllViews()
+        product.features.forEach { feature ->
+            val view = layoutInflater.inflate(R.layout.feature_item, container, false)
+            view.findViewById<TextView>(R.id.featureText).text = feature
+            val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.weight = 1f
+            params.marginEnd = 8.dpToPx()
+            view.layoutParams = params
+            container.addView(view)
         }
     }
+
+    private fun loadWarranty(product: Product) {
+        val container = findViewById<LinearLayout>(R.id.warrantyContainer)
+        container.removeAllViews()
+        product.warranty?.takeIf { it.isNotEmpty() && it != "None" }?.let { warrantyText ->
+            val view = layoutInflater.inflate(R.layout.warranty_item, container, false)
+            view.findViewById<TextView>(R.id.warrantyText).text = warrantyText
+            container.addView(view)
+        }
+    }
+
+    private fun Int.dpToPx(): Int = (this * resources.displayMetrics.density).toInt()
 }

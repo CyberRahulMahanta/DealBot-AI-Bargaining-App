@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomDatePickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">#6C3AED</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorAccent">#6C3AED</item>
+    </style>
+</resources>
