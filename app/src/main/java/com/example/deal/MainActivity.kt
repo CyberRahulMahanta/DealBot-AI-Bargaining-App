@@ -56,15 +56,47 @@ class MainActivity : AppCompatActivity() {
         animateFloating(circle2, -10f, 3500)
         // Button click handlers
         btnLogin.setOnClickListener {
-            // Navigate to Login/SignUp activity
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+            // 🔥 Press Animation
+            btnLogin.animate()
+                .scaleX(0.92f)
+                .scaleY(0.92f)
+                .setDuration(80)
+                .withEndAction {
+                    btnLogin.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(120)
+                        .setInterpolator(OvershootInterpolator(1.2f))
+                        .start()
+
+                    // 👉 Navigate AFTER animation
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                }
+                .start()
         }
         btnSignUp.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+            // 🔥 Press Animation
+            btnSignUp.animate()
+                .scaleX(0.92f)
+                .scaleY(0.92f)
+                .setDuration(80)
+                .withEndAction {
+                    btnSignUp.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(120)
+                        .setInterpolator(OvershootInterpolator(1.2f))
+                        .start()
+
+                    val intent = Intent(this, SignUpActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                }
+                .start()
         }
     }
     private fun animateFloating(view: View, distance: Float, duration: Long) {
@@ -85,4 +117,6 @@ class MainActivity : AppCompatActivity() {
         })
         set.start()
     }
+
+
 }

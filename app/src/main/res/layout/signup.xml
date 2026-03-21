@@ -79,7 +79,7 @@
                 app:boxCornerRadiusBottomEnd="14dp"
                 app:boxStrokeColor="@color/input_stroke_color"
                 app:boxBackgroundColor="@android:color/white"
-                app:startIconDrawable="@drawable/ic_person_small"
+                app:startIconDrawable="@drawable/ic_user_small"
                 app:startIconTint="#7C7C8A"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 

@@ -17,6 +17,7 @@ import com.example.deal.model.ProductResponse
 import com.example.deal.network.ApiService
 import com.example.deal.network.RetrofitClient
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,12 +33,20 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var colorContainer: LinearLayout
     private lateinit var btnBuyNow: MaterialButton
 
+    private lateinit var btnBack: MaterialCardView
+
     private var product: Product? = null
     private var selectedColorIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
+
+        btnBack = findViewById(R.id.btnBack)
+
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         // Initialize views
         productImage = findViewById(R.id.imgProduct)
@@ -138,7 +147,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         // Load image safely
         product.image_url?.let {
-            val fullImageUrl = "http://192.168.74.224:8000/$it"
+            val fullImageUrl = "http://192.168.74.91:8000/$it"
             Glide.with(this).load(fullImageUrl).into(productImage)
         }
 

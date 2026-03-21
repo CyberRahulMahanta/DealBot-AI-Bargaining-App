@@ -130,6 +130,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-medium"
                 android:background="@drawable/gradient_button"
+                android:foreground="?attr/selectableItemBackground"
                 app:backgroundTint="@null"
                 app:cornerRadius="14dp" />
 

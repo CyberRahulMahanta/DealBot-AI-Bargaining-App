@@ -53,7 +53,7 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:contentDescription="Back"
-                        android:src="@android:drawable/ic_menu_revert"
+                        android:src="@drawable/ic_menu_revert"
                         app:tint="#1A1A2E" />
                 </com.google.android.material.card.MaterialCardView>
 

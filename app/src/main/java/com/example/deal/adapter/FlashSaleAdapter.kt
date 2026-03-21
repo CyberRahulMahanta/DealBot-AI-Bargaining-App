@@ -36,7 +36,7 @@ class FlashSaleAdapter(private val productList: List<Product>) :
         holder.productName.text = product.name ?: "No Name"
         holder.productPrice.text = "₹${product.selling_price}"
 
-        val fullImageUrl = "http://192.168.74.224:8000/${product.image_url}"
+        val fullImageUrl = "http://192.168.74.91:8000/${product.image_url}"
 
         Picasso.get()
             .load(fullImageUrl)

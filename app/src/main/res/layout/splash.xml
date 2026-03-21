@@ -92,6 +92,7 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.02"
             android:background="@drawable/gradient_button"
+            android:foreground="?attr/selectableItemBackground"
             app:backgroundTint="@null"
             app:cornerRadius="16dp"
             app:elevation="8dp" />
@@ -145,6 +146,7 @@
             android:letterSpacing="0.02"
             app:cornerRadius="16dp"
             app:strokeColor="@color/primary"
+            android:foreground="?attr/selectableItemBackground"
             app:strokeWidth="1.5dp"
             app:rippleColor="#206C3AED" />
         <TextView

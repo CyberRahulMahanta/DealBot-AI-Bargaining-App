@@ -115,8 +115,7 @@
                                 android:layout_height="match_parent"
                                 android:contentDescription="Profile Picture"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/ic_person_small"
-                                app:tint="#7A9096" />
+                                android:src="@drawable/ic_person_small" />
                         </com.google.android.material.card.MaterialCardView>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -136,7 +135,7 @@
                             android:layout_height="18dp"
                             android:layout_gravity="center"
                             android:contentDescription="Change Photo"
-                            android:src="@android:drawable/ic_menu_camera"
+                            android:src="@drawable/camera_icon"
                             app:tint="#FFFFFF" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -192,7 +191,7 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:contentDescription="Name"
-                                android:src="@drawable/ic_person_small"
+                                android:src="@drawable/ic_user_small"
                                 app:tint="#7A9096" />
                             <EditText
                                 android:id="@+id/etFullName"
