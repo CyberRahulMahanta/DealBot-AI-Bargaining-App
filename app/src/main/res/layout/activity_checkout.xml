@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".OrderActivity">
+    tools:context=".CheckoutActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,7 +41,7 @@
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:contentDescription="Back"
-                        android:src="@android:drawable/ic_menu_revert"
+                        android:src="@drawable/ic_menu_revert"
                         app:tint="#1A1A2E" />
                 </com.google.android.material.card.MaterialCardView>
                 <!-- Title -->
@@ -86,7 +86,7 @@
                 </RelativeLayout>
                 <!-- Name -->
                 <TextView
-                    android:id="@+id/tvAddressName"
+                    android:id="@+id/tvCustomerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -119,13 +119,32 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- FIXED ROW -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Items"
-                    android:textColor="#1A1A2E"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Left -->
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Items"
+                        android:textColor="#1A1A2E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Right -->
+                    <TextView
+                        android:id="@+id/tvNegotiationStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Negotiation not done"
+                        android:textColor="#1A1A2E"
+                        android:textSize="14sp" />
+                </LinearLayout>
                 <!-- Item Row -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,6 +159,7 @@
                         app:cardBackgroundColor="#F5F5F5"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="0dp">
+
                         <ImageView
                             android:id="@+id/imgOrderProduct"
                             android:layout_width="match_parent"
@@ -173,15 +193,61 @@
                             android:text="$140.00"
                             android:textColor="#9E9E9E"
                             android:textSize="14sp" />
+                        <View
+                            android:id="@+id/viewSelectedColor"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/circle_shape"/>
+
                     </LinearLayout>
                     <!-- Quantity -->
-                    <TextView
-                        android:id="@+id/tvOrderQty"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="x1"
-                        android:textColor="#1A1A2E"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="4dp">
+
+                        <!-- Minus Button -->
+                        <TextView
+                            android:id="@+id/btnMinus"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="−"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
+
+                        <!-- Quantity Text -->
+                        <TextView
+                            android:id="@+id/tvOrderQty"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#1A1A2E"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <!-- Plus Button -->
+                        <TextView
+                            android:id="@+id/btnPlus"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
             <!-- Divider -->
@@ -273,9 +339,12 @@
                         android:orientation="horizontal"
                         android:padding="14dp">
                         <!-- Placeholder for no logo -->
-                        <View
+                        <ImageView
                             android:layout_width="56dp"
-                            android:layout_height="0dp" />
+                            android:layout_height="40dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/fast_delivery_icon"
+                        android:contentDescription="Regular Shipping Logo"/>
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

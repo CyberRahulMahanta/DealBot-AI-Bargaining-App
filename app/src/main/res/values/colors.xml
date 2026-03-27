@@ -32,4 +32,11 @@
     <color name="grey_background">#78909C</color>
     <color name="nav_item_selected">#FFFFFFFF</color>
     <color name="nav_item_unselected">#ECEFF1</color>
+    <color name="success_gradient">#26A69A</color>
+    <color name="success_chip_bg">#E8F5E8</color>
+    <color name="success_chip_stroke">#C8E6C9</color>
+    <color name="success_chip_icon">#2E7D32</color>
+    <color name="success_chip_text">#2E7D32</color>
+    <color name="error_chip_bg">#FDECEA</color>
+    <color name="error_chip_text">#E74C3C</color>
 </resources>

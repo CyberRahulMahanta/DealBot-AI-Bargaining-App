@@ -67,7 +67,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 🔥 Disable button + loading
             setLoadingState(true)
 
             // Firebase Login

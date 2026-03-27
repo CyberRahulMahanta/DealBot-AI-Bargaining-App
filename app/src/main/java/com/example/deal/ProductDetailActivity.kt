@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.deal.model.Product
 import com.example.deal.model.ProductResponse
-import com.example.deal.network.ApiService
 import com.example.deal.network.RetrofitClient
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -32,8 +31,10 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var productReviewCount: TextView
     private lateinit var colorContainer: LinearLayout
     private lateinit var btnBuyNow: MaterialButton
-
+    private lateinit var btnNegotiate: MaterialButton
     private lateinit var btnBack: MaterialCardView
+
+    private lateinit var btnCart: MaterialCardView
 
     private var product: Product? = null
     private var selectedColorIndex = 0
@@ -42,8 +43,8 @@ class ProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
+        // Back button
         btnBack = findViewById(R.id.btnBack)
-
         btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -57,8 +58,9 @@ class ProductDetailActivity : AppCompatActivity() {
         productReviewCount = findViewById(R.id.tvReviewCount)
         colorContainer = findViewById(R.id.colorContainer)
         btnBuyNow = findViewById(R.id.btnBuyNow)
+        btnNegotiate = findViewById(R.id.btnNegotiate)
 
-        // Get product ID from intent
+        // Get product ID
         val productId = intent.getIntExtra("product_id", -1)
         if (productId != -1) {
             loadProduct(productId)
@@ -66,95 +68,98 @@ class ProductDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "Invalid product", Toast.LENGTH_SHORT).show()
         }
 
-// Buy Now Button
+        // ✅ Buy Now → Negotiation NOT done
         btnBuyNow.setOnClickListener {
-            if (product == null) {
-                Toast.makeText(this, "Product not loaded yet", Toast.LENGTH_SHORT).show()
-                Log.e("BUY_NOW", "Product is null")
-                return@setOnClickListener
-            }
-
-            val colors = product?.available_colors?.split(",") ?: emptyList()
-            val selectedColor = if (colors.isNotEmpty() && selectedColorIndex < colors.size) {
-                colors[selectedColorIndex]
-            } else "N/A"
-
-            Log.d("BUY_NOW", "Launching CheckoutActivity with: id=${product?.id}, name=${product?.name}, price=${product?.selling_price}, color=$selectedColor")
-
-            try {
-                val intent = Intent(this, CheckoutActivity::class.java).apply {
-                    putExtra("product_id", product?.id ?: -1)
-                    putExtra("product_name", product?.name ?: "Unknown")
-                    putExtra("product_price", product?.selling_price ?: 0.0)
-                    putExtra("selected_color", selectedColor)
-                }
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("BUY_NOW_ERROR", e.message ?: "Unknown error")
-                Toast.makeText(this, "Failed to open checkout", Toast.LENGTH_SHORT).show()
-            }
+            openCheckout("Negotiation not done")
         }
 
+        // ✅ Negotiate → Negotiation DONE
+        btnNegotiate.setOnClickListener {
+            openCheckout("Negotiation done")
+        }
 
+        btnCart = findViewById(R.id.btnCart)
 
+        btnCart.setOnClickListener {
+            addToCart()
+        }
+    }
+
+    // ✅ Common function to open checkout
+    private fun openCheckout(negotiationStatus: String) {
+        if (product == null) {
+            Toast.makeText(this, "Product not loaded yet", Toast.LENGTH_SHORT).show()
+            Log.e("CHECKOUT", "Product is null")
+            return
+        }
+
+        val colors = product?.available_colors?.split(",") ?: emptyList()
+        val selectedColor = if (colors.isNotEmpty() && selectedColorIndex < colors.size) {
+            colors[selectedColorIndex]
+        } else "N/A"
+
+        Log.d("CHECKOUT", "Status: $negotiationStatus")
+
+        val intent = Intent(this, CheckoutActivity::class.java).apply {
+            putExtra("product_id", product?.id ?: -1)
+            putExtra("product_name", product?.name ?: "Unknown")
+            putExtra("product_price", product?.selling_price ?: 0.0)
+            putExtra("selected_color", selectedColor)
+            putExtra("negotiation_status", negotiationStatus)
+        }
+
+        startActivity(intent)
     }
 
     private fun loadProduct(id: Int) {
+        RetrofitClient.api.getProductById(id)
+            .enqueue(object : Callback<ProductResponse> {
 
-        val api = RetrofitClient.api
-
-        api.getProductById(id).enqueue(object : Callback<ProductResponse> {
-
-            override fun onResponse(
-                call: Call<ProductResponse>,
-                response: Response<ProductResponse>
-            ) {
-                if (response.isSuccessful) {
-                    product = response.body()?.data
-                    product?.let { populateProductDetails(it) }
-                        ?: Toast.makeText(
+                override fun onResponse(
+                    call: Call<ProductResponse>,
+                    response: Response<ProductResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        product = response.body()?.data
+                        product?.let { populateProductDetails(it) }
+                            ?: Toast.makeText(
+                                this@ProductDetailActivity,
+                                "Product not found",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                    } else {
+                        Toast.makeText(
                             this@ProductDetailActivity,
-                            "Product not found",
+                            "Server error",
                             Toast.LENGTH_SHORT
                         ).show()
-                } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                    Log.e("API_ERROR", t.message ?: "Unknown error")
                     Toast.makeText(
                         this@ProductDetailActivity,
-                        "Server error",
+                        "Failed to load product",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
-
-            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
-                Log.e("API_ERROR", t.message ?: "Unknown error")
-                Toast.makeText(
-                    this@ProductDetailActivity,
-                    "Failed to load product",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+            })
     }
 
     private fun populateProductDetails(product: Product) {
-        // Safe UI updates
         productName.text = product.name ?: "Unknown"
         productPrice.text = "₹${product.selling_price ?: 0.0}"
         productBrand.text = product.brand ?: "Unknown"
         productRating.text = product.rating?.toString() ?: "0"
         productReviewCount.text = "(${product.review_count ?: 0} Reviews)"
 
-        // Load image safely
         product.image_url?.let {
-            val fullImageUrl = "http://192.168.74.91:8000/$it"
+            val fullImageUrl = "http://172.27.90.223:8000/$it"
             Glide.with(this).load(fullImageUrl).into(productImage)
         }
 
-        // Colors
         setupColorViews(product)
-
-        // Features and warranty
         loadFeatures(product)
         loadWarranty(product)
     }
@@ -167,7 +172,7 @@ class ProductDetailActivity : AppCompatActivity() {
         colors.forEachIndexed { index, hex ->
             try {
                 val colorView = View(this)
-                val size = 80 // px
+                val size = 80
                 val params = LinearLayout.LayoutParams(size, size)
                 params.setMargins(16, 0, 16, 0)
                 colorView.layoutParams = params
@@ -213,12 +218,76 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun loadWarranty(product: Product) {
         val container = findViewById<LinearLayout>(R.id.warrantyContainer)
         container.removeAllViews()
-        product.warranty?.takeIf { it.isNotEmpty() && it != "None" }?.let { warrantyText ->
+        product.warranty?.takeIf { it.isNotEmpty() && it != "None" }?.let {
             val view = layoutInflater.inflate(R.layout.warranty_item, container, false)
-            view.findViewById<TextView>(R.id.warrantyText).text = warrantyText
+            view.findViewById<TextView>(R.id.warrantyText).text = it
             container.addView(view)
         }
     }
 
-    private fun Int.dpToPx(): Int = (this * resources.displayMetrics.density).toInt()
+    private fun addToCart() {
+
+        if (product == null) {
+            Toast.makeText(this, "Product not loaded", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Get selected color
+        val colors = product?.available_colors?.split(",") ?: emptyList()
+        val selectedColor = if (colors.isNotEmpty() && selectedColorIndex < colors.size) {
+            colors[selectedColorIndex]
+        } else "N/A"
+
+        // 🔥 Get Firebase UID
+        val userId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+
+        if (userId == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Create request body
+        val request = HashMap<String, Any>()
+        request["user_id"] = userId
+        request["product_id"] = product!!.id ?: -1
+        request["selected_color"] = selectedColor
+
+        // Call API
+        RetrofitClient.api.addToCart(request)
+            .enqueue(object : retrofit2.Callback<Map<String, String>> {
+
+                override fun onResponse(
+                    call: retrofit2.Call<Map<String, String>>,
+                    response: retrofit2.Response<Map<String, String>>
+                ) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(
+                            this@ProductDetailActivity,
+                            "Added to Cart 🛒",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@ProductDetailActivity,
+                            "Failed to add",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: retrofit2.Call<Map<String, String>>,
+                    t: Throwable
+                ) {
+                    Toast.makeText(
+                        this@ProductDetailActivity,
+                        "Error: ${t.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+    }
+
+    private fun Int.dpToPx(): Int =
+        (this * resources.displayMetrics.density).toInt()
 }

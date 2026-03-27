@@ -1,17 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Deal" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
 
-    <style name="Theme.Deal" parent="Base.Theme.Deal" />
-    <style name="Theme.ModernSignUp" parent="Theme.Material3.Light.NoActionBar">
+    <!-- Base app theme -->
+    <style name="Theme.Deal" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:statusBarColor">@color/background</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Font -->
         <item name="android:fontFamily">sans-serif</item>
+
+        <item name="elevationOverlayEnabled">false</item>
+
     </style>
+
 </resources>

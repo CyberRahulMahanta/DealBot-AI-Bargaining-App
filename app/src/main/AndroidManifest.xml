@@ -8,12 +8,24 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/deal_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Deal"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".negotiation_price"
+            android:exported="false" />
+        <activity
+            android:name=".my_carts"
+            android:exported="false" />
+        <activity
+            android:name=".my_orders"
+            android:exported="false" />
+        <activity
+            android:name=".payment_sucess"
+            android:exported="false" />
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />

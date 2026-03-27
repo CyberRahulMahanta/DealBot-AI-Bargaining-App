@@ -117,7 +117,7 @@
 
     <!-- ================= FAVORITE ================= -->
     <LinearLayout
-        android:id="@+id/tabFavorite"
+        android:id="@+id/tabOrders"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -125,18 +125,18 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivFavorite"
+            android:id="@+id/ivOrders"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/ic_favorite"
+            android:src="@drawable/ic_orders"
             app:tint="@color/nav_item_unselected"
             android:contentDescription="Favorite" />
 
         <TextView
-            android:id="@+id/tvFavorite"
+            android:id="@+id/tvOrders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorite"
+            android:text="My Orders"
             android:textSize="10sp"
             android:textColor="@color/nav_item_unselected"
             android:layout_marginTop="3dp" />

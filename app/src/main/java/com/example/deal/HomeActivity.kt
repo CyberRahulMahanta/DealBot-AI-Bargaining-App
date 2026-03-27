@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity() {
     // -------------------------------
     private fun loadProducts() {
 
-        val api = RetrofitClient.api   // ✅ FIXED
+        val api = RetrofitClient.api
 
         api.getProducts()
             .enqueue(object : Callback<List<Product>> {
@@ -124,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
         val tabHome = findViewById<LinearLayout>(R.id.tabHome)
         val tabSearch = findViewById<LinearLayout>(R.id.tabSearch)
         val tabCart = findViewById<LinearLayout>(R.id.tabCart)
-        val tabFavorite = findViewById<LinearLayout>(R.id.tabFavorite)
+        val tabOrders = findViewById<LinearLayout>(R.id.tabOrders)
         val tabProfile = findViewById<LinearLayout>(R.id.tabProfile)
 
         tabHome.setOnClickListener {
@@ -137,10 +137,14 @@ class HomeActivity : AppCompatActivity() {
 
         tabCart.setOnClickListener {
             Toast.makeText(this, "Cart Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, my_carts::class.java)
+            startActivity(intent)
         }
 
-        tabFavorite.setOnClickListener {
-            Toast.makeText(this, "Favorite Clicked", Toast.LENGTH_SHORT).show()
+        tabOrders.setOnClickListener {
+            Toast.makeText(this, "My Orders Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, my_orders::class.java)
+            startActivity(intent)
         }
         tabProfile.setOnClickListener {
             Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show()
