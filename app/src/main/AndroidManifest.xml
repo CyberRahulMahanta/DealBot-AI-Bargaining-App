@@ -16,10 +16,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".negotiation_price"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".my_carts"
             android:exported="false" />
+        <activity android:name=".ProductSearchActivity" />
         <activity
             android:name=".my_orders"
             android:exported="false" />
@@ -41,6 +43,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".NotificationsActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

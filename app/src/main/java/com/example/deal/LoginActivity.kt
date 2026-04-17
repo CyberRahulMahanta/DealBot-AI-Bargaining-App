@@ -143,9 +143,6 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
-    // =========================
-    // 🔥 Loading State Handler
-    // =========================
     private fun setLoadingState(isLoading: Boolean) {
         btnLogin.isEnabled = !isLoading
         btnLogin.text = if (isLoading) "Logging in..." else "Login"

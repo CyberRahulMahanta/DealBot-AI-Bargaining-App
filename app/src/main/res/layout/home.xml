@@ -5,28 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
-    <ScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="70dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="16dp">
+
             <!-- Header: Discover + Icons -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:layout_marginBottom="4dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_centerVertical="true">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -35,6 +42,7 @@
                         android:textStyle="bold"
                         android:textColor="#1A1A1A"
                         android:fontFamily="sans-serif-medium" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -43,47 +51,52 @@
                         android:textColor="#888888"
                         android:layout_marginTop="2dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:orientation="horizontal">
-                    <!-- Search Icon Button -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btnSearch"
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#E8E8E8"
-                        app:strokeWidth="1dp"
-                        android:layout_marginEnd="10dp">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_search"
-                            app:tint="#1A1A1A" />
-                    </com.google.android.material.card.MaterialCardView>
+
                     <!-- Notification Icon Button -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btnNotification"
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#E8E8E8"
-                        app:strokeWidth="1dp">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@android:drawable/ic_popup_reminder"
-                            app:tint="#1A1A1A" />
-                    </com.google.android.material.card.MaterialCardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/btnNotification"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#E8E8E8"
+                            app:strokeWidth="1dp">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_notification_bell" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Notification Badge -->
+                        <TextView
+                            android:id="@+id/tvNotificationBadge"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="end|top"
+                            android:background="@drawable/bg_badge"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
                 </LinearLayout>
             </RelativeLayout>
+
             <!-- Discount Banner -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/bannerCard"
@@ -94,21 +107,25 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="#F5F0EB">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <!-- Banner Image Placeholder -->
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/discount_image"/>
+                        android:background="@drawable/discount_image" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_centerVertical="true"
                         android:paddingStart="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -116,6 +133,7 @@
                             android:textSize="22sp"
                             android:textStyle="bold"
                             android:textColor="#1A1A1A" />
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSeeMore"
                             android:layout_width="wrap_content"
@@ -129,6 +147,7 @@
                             android:textColor="#FFFFFF"
                             android:paddingHorizontal="16dp" />
                     </LinearLayout>
+
                     <!-- Discount Badge -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="52dp"
@@ -139,6 +158,7 @@
                         app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#C8A96E"
                         app:cardElevation="0dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -150,6 +170,7 @@
                     </com.google.android.material.card.MaterialCardView>
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
+
             <!-- Category Chips -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -158,12 +179,14 @@
                 android:scrollbars="none"
                 android:paddingHorizontal="20dp"
                 android:clipToPadding="false">
+
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
                     app:chipSpacingHorizontal="8dp">
+
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -174,6 +197,7 @@
                         app:chipCornerRadius="20dp"
                         app:chipStrokeColor="#E0E0E0"
                         app:chipStrokeWidth="1dp" />
+
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -184,6 +208,7 @@
                         app:chipCornerRadius="20dp"
                         app:chipStrokeColor="#E0E0E0"
                         app:chipStrokeWidth="1dp" />
+
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -194,6 +219,7 @@
                         app:chipCornerRadius="20dp"
                         app:chipStrokeColor="#E0E0E0"
                         app:chipStrokeWidth="1dp" />
+
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,6 +232,7 @@
                         app:chipStrokeWidth="1dp" />
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
+
             <!-- Flash Sale Header -->
             <RelativeLayout
                 android:id="@+id/flashSaleContainer"
@@ -213,6 +240,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="20dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,6 +249,7 @@
                     android:textStyle="bold"
                     android:textColor="#1A1A1A"
                     android:layout_centerVertical="true" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -228,12 +257,14 @@
                     android:layout_centerVertical="true"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Closing in: "
                         android:textSize="12sp"
                         android:textColor="#888888" />
+
                     <!-- Timer: Hours -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="28dp"
@@ -242,6 +273,7 @@
                         app:cardBackgroundColor="#F0F0F0"
                         app:cardElevation="0dp"
                         android:layout_marginEnd="3dp">
+
                         <TextView
                             android:id="@+id/tvHours"
                             android:layout_width="wrap_content"
@@ -252,6 +284,7 @@
                             android:textStyle="bold"
                             android:textColor="#1A1A1A" />
                     </com.google.android.material.card.MaterialCardView>
+
                     <!-- Timer: Minutes -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="28dp"
@@ -260,6 +293,7 @@
                         app:cardBackgroundColor="#F0F0F0"
                         app:cardElevation="0dp"
                         android:layout_marginEnd="3dp">
+
                         <TextView
                             android:id="@+id/tvMinutes"
                             android:layout_width="wrap_content"
@@ -270,6 +304,7 @@
                             android:textStyle="bold"
                             android:textColor="#1A1A1A" />
                     </com.google.android.material.card.MaterialCardView>
+
                     <!-- Timer: Seconds -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="28dp"
@@ -277,6 +312,7 @@
                         app:cardCornerRadius="6dp"
                         app:cardBackgroundColor="#F0F0F0"
                         app:cardElevation="0dp">
+
                         <TextView
                             android:id="@+id/tvSeconds"
                             android:layout_width="wrap_content"
@@ -294,12 +330,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/flashSaleRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_marginTop="14dp"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
-                android:scrollbars="none"/>
+                android:overScrollMode="never"
+                android:scrollbars="none" />
 
             <!-- Most Popular Header -->
             <RelativeLayout
@@ -307,6 +345,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="24dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -315,6 +354,7 @@
                     android:textStyle="bold"
                     android:textColor="#1A1A1A"
                     android:layout_centerVertical="true" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -324,6 +364,7 @@
                     android:textSize="13sp"
                     android:textColor="#888888" />
             </RelativeLayout>
+
             <!-- Most Popular Grid (2 columns) -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -332,6 +373,7 @@
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="16dp">
+
                 <!-- Popular Item 1 -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
@@ -341,12 +383,14 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#F5F5F5">
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:background="@drawable/popular_img1" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <!-- Popular Item 2 -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
@@ -356,6 +400,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#F5F5F5">
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -364,7 +409,7 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation -->
     <include
@@ -372,5 +417,5 @@
         layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

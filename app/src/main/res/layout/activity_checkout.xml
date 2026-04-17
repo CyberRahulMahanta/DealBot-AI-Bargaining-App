@@ -5,494 +5,902 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F8FAFC"
     tools:context=".CheckoutActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:fillViewport="true"
-        android:paddingBottom="100dp">
+        android:paddingBottom="130dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <!-- Top Bar -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-                <!-- Back Button -->
+                android:background="#FFFFFF"
+                android:paddingStart="20dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="18dp">
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="#F8FAFC"
+                    app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#EEEEEE"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:contentDescription="Back"
                         android:src="@drawable/ic_menu_revert"
-                        app:tint="#1A1A2E" />
+                        app:tint="#0F172A" />
                 </com.google.android.material.card.MaterialCardView>
-                <!-- Title -->
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Order"
-                    android:textColor="#1A1A2E"
-                    android:textSize="18sp"
+                    android:text="Checkout"
+                    android:textColor="#0F172A"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </RelativeLayout>
-            <!-- Address Section -->
-            <LinearLayout
+
+            <!-- Address Card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="12dp">
-                <!-- Address Header Row -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:text="Address"
-                        android:textColor="#1A1A2E"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <ImageView
-                        android:id="@+id/btnEditAddress"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="Edit Address"
-                        android:src="@android:drawable/ic_menu_edit"
-                        app:tint="#1A1A2E" />
-                </RelativeLayout>
-                <!-- Name -->
-                <TextView
-                    android:id="@+id/tvCustomerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Ihor Davydenko"
-                    android:textColor="#1A1A2E"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-                <!-- Address Detail -->
-                <TextView
-                    android:id="@+id/tvAddressDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="18-22 Craven Rd, London W2 3PX, Great Britain"
-                    android:textColor="#9E9E9E"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="3dp" />
-            </LinearLayout>
-            <!-- Divider -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#F0F0F0" />
-            <!-- Items Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="20dp">
-                <!-- FIXED ROW -->
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-                    <!-- Left -->
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Items"
-                        android:textColor="#1A1A2E"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <!-- Right -->
-                    <TextView
-                        android:id="@+id/tvNegotiationStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Negotiation not done"
-                        android:textColor="#1A1A2E"
-                        android:textSize="14sp" />
-                </LinearLayout>
-                <!-- Item Row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <!-- Product Image -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        app:cardBackgroundColor="#F5F5F5"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="0dp">
-
-                        <ImageView
-                            android:id="@+id/imgOrderProduct"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Product"
-                            android:padding="8dp"
-                            android:scaleType="centerCrop"
-                            android:src="@android:drawable/ic_menu_gallery" />
-                    </com.google.android.material.card.MaterialCardView>
-                    <!-- Product Info -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
                         <TextView
-                            android:id="@+id/tvOrderProductName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Air Jordan XXXV1&quot;Psychic\nEnergy&quot;"
-                            android:textColor="#1A1A2E"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:lineSpacingExtra="2dp" />
-                        <TextView
-                            android:id="@+id/tvOrderProductPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="$140.00"
-                            android:textColor="#9E9E9E"
-                            android:textSize="14sp" />
-                        <View
-                            android:id="@+id/viewSelectedColor"
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:background="@drawable/circle_shape"/>
-
-                    </LinearLayout>
-                    <!-- Quantity -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:padding="4dp">
-
-                        <!-- Minus Button -->
-                        <TextView
-                            android:id="@+id/btnMinus"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:text="−"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:clickable="true"
-                            android:focusable="true"/>
-
-
-                        <!-- Quantity Text -->
-                        <TextView
-                            android:id="@+id/tvOrderQty"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="#1A1A2E"
+                            android:text="Delivery Address"
+                            android:textColor="#0F172A"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <!-- Plus Button -->
-                        <TextView
-                            android:id="@+id/btnPlus"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:text="+"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:clickable="true"
-                            android:focusable="true"/>
+                        <ImageView
+                            android:id="@+id/btnEditAddress"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="Edit Address"
+                            android:src="@drawable/user_edit_icon"
+                            app:tint="#2563EB" />
+                    </RelativeLayout>
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvCustomerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Ihor Davydenko"
+                        android:textColor="#0F172A"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAddressDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="18-22 Craven Rd, London W2 3PX, Great Britain"
+                        android:textColor="#64748B"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </LinearLayout>
-            <!-- Divider -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#F0F0F0" />
-            <!-- Shipping Section -->
-            <LinearLayout
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Items Card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Shipping"
-                    android:textColor="#1A1A2E"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <!-- Shipping Option 1: DHL Express -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardShippingDHL"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="#EEEEEE"
-                    app:strokeWidth="1dp">
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="14dp">
-                        <!-- DHL Logo Container -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="56dp"
-                            android:layout_height="40dp"
-                            app:cardBackgroundColor="#FFCC00"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="DHL"
-                                android:textColor="#CC0000"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-                        </com.google.android.material.card.MaterialCardView>
+                        android:orientation="horizontal">
+
                         <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Items"
+                            android:textColor="#0F172A"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvNegotiationStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_status_badge"
+                            android:paddingStart="10dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="6dp"
+                            android:text="Negotiation not done"
+                            android:textColor="#B45309"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="76dp"
+                            android:layout_height="76dp"
+                            app:cardBackgroundColor="#F8FAFC"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:id="@+id/imgOrderProduct"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="Product"
+                                android:padding="8dp"
+                                android:scaleType="centerCrop"
+                                android:src="@android:drawable/ic_menu_gallery" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="14dp"
                             android:layout_weight="1"
-                            android:text="DHL Express"
-                            android:textColor="#1A1A2E"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:contentDescription="Select"
-                            android:src="@android:drawable/ic_media_play"
-                            app:tint="#BDBDBD" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <!-- Shipping Option 2: Regular -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardShippingRegular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="#EEEEEE"
-                    app:strokeWidth="1dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="14dp">
-                        <!-- Placeholder for no logo -->
-                        <ImageView
-                            android:layout_width="56dp"
-                            android:layout_height="40dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/fast_delivery_icon"
-                        android:contentDescription="Regular Shipping Logo"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:orientation="vertical">
+
                             <TextView
+                                android:id="@+id/tvOrderProductName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Regular ($5)"
-                                android:textColor="#1A1A2E"
+                                android:maxLines="2"
+                                android:text="Air Jordan XXXV1 &quot;Psychic Energy&quot;"
+                                android:textColor="#0F172A"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
+
                             <TextView
+                                android:id="@+id/tvOrderProductPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="Estimate time – 20 Jan"
-                                android:textColor="#9E9E9E"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:contentDescription="Select"
-                            android:src="@android:drawable/ic_media_play"
-                            app:tint="#BDBDBD" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-            <!-- Divider -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#F0F0F0" />
-            <!-- Payment Method Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Payment method"
-                    android:textColor="#1A1A2E"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <!-- Payment Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardPayment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="#EEEEEE"
-                    app:strokeWidth="1dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="14dp">
-                        <!-- Mastercard Logo -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="48dp"
-                            android:layout_height="36dp"
-                            app:cardBackgroundColor="#F5F5F5"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp">
+                                android:layout_marginTop="5dp"
+                                android:text="$140.00"
+                                android:textColor="#2563EB"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center_vertical"
                                 android:orientation="horizontal">
+
                                 <View
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-                                    android:background="@drawable/dot_active"
-                                    android:backgroundTint="#EB001B" />
-                                <View
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-                                    android:layout_marginStart="-6dp"
-                                    android:background="@drawable/dot_active"
-                                    android:backgroundTint="#F79E1B" />
+                                    android:id="@+id/viewSelectedColor"
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:background="@drawable/circle_shape" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:text="Selected color"
+                                    android:textColor="#64748B"
+                                    android:textSize="12sp" />
                             </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-                        <!-- Card Details -->
+                        </LinearLayout>
+
                         <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_qty_selector"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp">
+
+                            <TextView
+                                android:id="@+id/btnMinus"
+                                android:layout_width="34dp"
+                                android:layout_height="34dp"
+                                android:background="@drawable/bg_qty_btn"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:text="−"
+                                android:textColor="#0F172A"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvOrderQty"
+                                android:layout_width="34dp"
+                                android:layout_height="34dp"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="#0F172A"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/btnPlus"
+                                android:layout_width="34dp"
+                                android:layout_height="34dp"
+                                android:background="@drawable/bg_qty_btn"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textColor="#0F172A"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Coupon Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Coupon"
+                        android:textColor="#0F172A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_coupon_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <EditText
+                            android:id="@+id/etCouponCode"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="Enter coupon code"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="#0F172A"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="14sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnApplyCoupon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="Apply"
+                            android:textAllCaps="false"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@color/main_color"
+                            app:cornerRadius="14dp"
+                            app:elevation="0dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvCouponApplied"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="SAVE10 applied successfully"
+                        android:textColor="#16A34A"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Shipping -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shipping"
+                        android:textColor="#0F172A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- DHL Shipping -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardShippingDHL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="#EFF6FF"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#2563EB"
+                        app:strokeWidth="1.5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="14dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="56dp"
+                                android:layout_height="40dp"
+                                app:cardBackgroundColor="#FFCC00"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="0dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="DHL"
+                                    android:textColor="#CC0000"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvShippingDhlTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DHL Express (₹10.00)"
+                                    android:textColor="#0F172A"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvShippingDhlDesc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="1-2 business days"
+                                    android:textColor="#64748B"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgShippingDhlCheck"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:contentDescription="Selected"
+                                android:src="@drawable/ic_radio_checked" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Regular Shipping -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardShippingRegular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="#F8FAFC"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#E2E8F0"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="14dp">
+
+                            <ImageView
+                                android:layout_width="56dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Regular Shipping Logo"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/fast_delivery_icon" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvShippingRegularTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Regular (₹5.00)"
+                                    android:textColor="#0F172A"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvShippingRegularDesc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="Estimate time – 20 Jan"
+                                    android:textColor="#64748B"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgShippingRegularCheck"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:contentDescription="Not Selected"
+                                android:src="@drawable/ic_radio_unchecked" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <!-- Payment -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Payment method"
+                        android:textColor="#0F172A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Card Payment -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardPaymentCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="#EFF6FF"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#2563EB"
+                        app:strokeWidth="1.5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="14dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="48dp"
+                                android:layout_height="36dp"
+                                app:cardBackgroundColor="#FFFFFF"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#E2E8F0"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="16dp"
+                                        android:layout_height="16dp"
+                                        android:background="@drawable/dot_active"
+                                        android:backgroundTint="#EB001B" />
+
+                                    <View
+                                        android:layout_width="16dp"
+                                        android:layout_height="16dp"
+                                        android:layout_marginStart="-6dp"
+                                        android:background="@drawable/dot_active"
+                                        android:backgroundTint="#F79E1B" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mastercard"
+                                    android:textColor="#0F172A"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="5767 **** **** 9577"
+                                    android:textColor="#64748B"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgPaymentCardCheck"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_radio_checked"
+                                android:contentDescription="Selected" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Cash on Delivery -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardPaymentCod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="#F8FAFC"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#E2E8F0"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="14dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@android:drawable/ic_menu_save"
+                                app:tint="#16A34A"
+                                android:contentDescription="Cash" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cash on Delivery"
+                                    android:textColor="#0F172A"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="Pay when order arrives"
+                                    android:textColor="#64748B"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgPaymentCodCheck"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_radio_unchecked"
+                                android:contentDescription="Not Selected" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Price Details -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price Details"
+                        android:textColor="#0F172A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Subtotal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="14dp"
                             android:layout_weight="1"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tvCardNumber"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="5767 **** **** 9577"
-                                android:textColor="#1A1A2E"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/tvCardHolder"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="Ihor Davydenko"
-                                android:textColor="#9E9E9E"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:contentDescription="Select"
-                            android:src="@android:drawable/ic_media_play"
-                            app:tint="#BDBDBD" />
+                            android:text="Subtotal"
+                            android:textColor="#64748B"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvSubtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹140.00"
+                            android:textColor="#0F172A"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+
+                    <!-- Shipping -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Shipping"
+                            android:textColor="#64748B"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvShippingAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹10.00"
+                            android:textColor="#0F172A"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Discount -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Discount"
+                            android:textColor="#64748B"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvDiscountAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-₹0.00"
+                            android:textColor="#16A34A"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#E2E8F0" />
+
+                    <!-- Total -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total"
+                            android:textColor="#0F172A"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTotalAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹150.00"
+                            android:textColor="#2563EB"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </ScrollView>
-    <!-- Bottom Pay Button -->
-    <FrameLayout
+
+    <!-- Bottom Bar -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#FFFFFF"
-        android:paddingHorizontal="20dp"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
         android:paddingTop="12dp"
-        android:paddingBottom="28dp">
+        android:paddingEnd="16dp"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payable Amount"
+                    android:textColor="#64748B"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvBottomTotalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="$135.00"
+                    android:textColor="#0F172A"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPay"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Pay – $145.00"
+            android:layout_height="58dp"
+            android:text="Pay Now"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-medium"
-            app:cornerRadius="16dp"
-        app:backgroundTint="@color/main_color" />
-    </FrameLayout>
+            app:backgroundTint="@color/main_color"
+            app:cornerRadius="18dp"
+            app:elevation="0dp" />
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
